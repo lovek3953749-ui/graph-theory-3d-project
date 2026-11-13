@@ -1,0 +1,1 @@
+Educational project starter. You may modify and use these files for academic and demonstration purposes. Third-party libraries remain subject to their own licenses.

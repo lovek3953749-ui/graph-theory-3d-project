@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="An interactive 3D Graph Theory learning and campus route optimization project." />
+  <title>Graph Theory | Network Intelligence Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#overview">
+        <span class="brand-mark">G<span>∴</span></span>
+        <span><b>GRAPH<span class="brand-light">LAB</span></b><small>NETWORK INTELLIGENCE</small></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="nav-list">
+        <button class="nav-link active" data-view="overview"><span>◈</span> Overview</button>
+        <button class="nav-link" data-view="visualizer"><span>✳</span> 3D Visualizer</button>
+        <button class="nav-link" data-view="algorithms"><span>⌘</span> Algorithm Lab</button>
+        <button class="nav-link" data-view="representations"><span>▦</span> Representations</button>
+        <button class="nav-link" data-view="theory"><span>∑</span> Theory Library</button>
+        <button class="nav-link" data-view="applications"><span>⌖</span> Applications</button>
+        <button class="nav-link" data-view="evaluation"><span>◷</span> Evaluation</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="status-card"><span class="pulse"></span><span><b>ENGINE ONLINE</b><small>Graph model loaded</small></span></div>
+        <div class="sidebar-foot">GRAPH THEORY PROJECT<br>ACADEMIC EDITION · 2026</div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="crumb"><span>PROJECTS</span><i>/</i><b id="crumb-current">OVERVIEW</b></div>
+        <div class="top-actions"><span class="live-indicator"><i></i> LIVE SIMULATION</span><button class="icon-btn" id="reset-view" title="Reset graph view">↺</button><button class="profile-chip">GT <span>Graph Theory</span></button></div>
+      </header>
+
+      <section class="view active" id="view-overview">
+        <div class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow"><span></span> MATHEMATICS × COMPUTING × REAL WORLD</div>
+            <h1>Understand the<br><em>language of networks.</em></h1>
+            <p>Explore how graph theory transforms relationships into structures that can be measured, searched, optimized, and visualized.</p>
+            <div class="hero-buttons"><button class="primary-btn" data-go="visualizer">Explore 3D network <b>↗</b></button><button class="text-btn" data-go="theory">Explore the theory <span>→</span></button></div>
+          </div>
+          <div class="hero-art">
+            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+            <div class="hero-node n1">A</div><div class="hero-node n2">B</div><div class="hero-node n3">C</div><div class="hero-node n4">D</div><div class="hero-node n5">E</div><div class="hero-node n6">F</div>
+            <svg viewBox="0 0 500 360" class="hero-lines"><g><path d="M90 180 L205 75 L365 105 L420 245 L265 295 L90 180 M205 75 L265 295 M90 180 L120 300 L265 295 M365 105 L265 295"/></g></svg>
+            <div class="art-caption">FIG 01 <span>· ABSTRACT NETWORK TOPOLOGY</span></div>
+          </div>
+        </div>
+
+        <div class="section-heading"><div><div class="eyebrow">SYSTEM SNAPSHOT</div><h2>Network at a glance</h2></div><span class="muted mono">SAMPLE CAMPUS GRAPH / UNDIRECTED</span></div>
+        <div class="stat-grid">
+          <article class="stat-card"><span class="stat-icon">◉</span><small>VERTICES</small><strong id="stat-nodes">6</strong><em>Locations in network</em></article>
+          <article class="stat-card"><span class="stat-icon">⌁</span><small>EDGES</small><strong id="stat-edges">9</strong><em>Walkway connections</em></article>
+          <article class="stat-card"><span class="stat-icon">↗</span><small>GRAPH DENSITY</small><strong id="stat-density">0.60</strong><em>Actual / possible edges</em></article>
+          <article class="stat-card"><span class="stat-icon">⌖</span><small>CONNECTIVITY</small><strong class="good" id="stat-connectivity">CONNECTED</strong><em>Every pair is reachable</em></article>
+        </div>
+
+        <div class="content-grid">
+          <article class="panel graph-panel">
+            <div class="panel-head"><div><div class="eyebrow">LIVE NETWORK MODEL</div><h3>Campus topology</h3></div><button class="small-link" data-go="visualizer">OPEN VISUALIZER ↗</button></div>
+            <div class="mini-graph-wrap"><div id="mini-graph" class="mini-graph"></div></div>
+            <div class="legend"><span><i class="dot cyan"></i> Vertex / location</span><span><i class="line-swatch"></i> Weighted edge</span><span><i class="dot gold"></i> Selected route</span></div>
+          </article>
+          <article class="panel phase-panel">
+            <div class="panel-head"><div><div class="eyebrow">LEARNING ROADMAP</div><h3>Six project phases</h3></div><span class="phase-count">06</span></div>
+            <div class="phase-list">
+              <div><b>01</b><span><strong>Historical origins</strong><small>Euler, bridges & early milestones</small></span><i>↗</i></div>
+              <div><b>02</b><span><strong>Mathematical foundations</strong><small>Definitions, properties & families</small></span><i>↗</i></div>
+              <div><b>03</b><span><strong>Representations</strong><small>Matrix, list & incidence</small></span><i>↗</i></div>
+              <div><b>04</b><span><strong>Algorithms</strong><small>Traversal & optimization</small></span><i>↗</i></div>
+              <div><b>05</b><span><strong>Applications</strong><small>Navigation, web & social systems</small></span><i>↗</i></div>
+              <div><b>06</b><span><strong>Implementation</strong><small>Python, NetworkX & evaluation</small></span><i>↗</i></div>
+            </div>
+          </article>
+        </div>
+        <div class="bottom-note"><span>✦</span><p><b>Project objective</b> — Build and explain a graph-based solution that models a real problem, selects an appropriate algorithm, visualizes the result, and evaluates its efficiency.</p></div>
+      </section>
+
+      <section class="view" id="view-visualizer">
+        <div class="page-title"><div><div class="eyebrow">INTERACTIVE GRAPH ENVIRONMENT</div><h1>3D Network <em>Visualizer</em></h1><p>Rotate the scene, inspect vertices, and explore the weighted campus network.</p></div><span class="tag">THREE.JS / WEBGL</span></div>
+        <div class="visualizer-layout">
+          <div class="panel scene-panel">
+            <div class="scene-toolbar"><span><i class="pulse"></i> RENDERING NETWORK</span><div><button id="toggle-labels" class="tool-btn active">Labels</button><button id="toggle-rotation" class="tool-btn active">Auto rotate</button><button id="reset-camera" class="tool-btn">Reset camera</button></div></div>
+            <div id="graph3d" class="graph3d"><div class="scene-loading">INITIALIZING 3D GRAPH ENGINE…</div></div>
+            <div class="scene-footer"><span>DRAG TO ROTATE</span><span>SCROLL TO ZOOM</span><span>CLICK A NODE TO INSPECT</span></div>
+          </div>
+          <aside class="panel inspector">
+            <div class="eyebrow">NODE INSPECTOR</div><h3 id="node-name">Select a vertex</h3><p id="node-description" class="muted">Click any glowing node in the network to inspect its connections.</p>
+            <div class="inspect-rule"></div><div class="inspect-metric"><span>DEGREE</span><b id="node-degree">—</b></div><div class="inspect-metric"><span>NEIGHBORS</span><b id="node-neighbors">—</b></div><div class="inspect-metric"><span>TYPE</span><b>VERTEX</b></div>
+            <div class="inspect-rule"></div><div class="eyebrow">GRAPH CONTROLS</div><label class="field-label" for="node-size">Node scale</label><input id="node-size" type="range" min="0.7" max="1.5" step="0.1" value="1"><label class="field-label" for="edge-opacity">Edge opacity</label><input id="edge-opacity" type="range" min="0.15" max="1" step="0.05" value="0.7">
+            <div class="inspector-tip">TIP <span>All edge labels represent illustrative walking-distance units, not measured campus distances.</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view" id="view-algorithms">
+        <div class="page-title"><div><div class="eyebrow">COMPUTATIONAL GRAPH THEORY</div><h1>Algorithm <em>Laboratory</em></h1><p>Choose an algorithm, define endpoints, and inspect the computed result.</p></div><span class="tag">LIVE EXECUTION</span></div>
+        <div class="algorithm-layout">
+          <div class="panel algorithm-controls">
+            <div class="eyebrow">CONFIGURATION</div><h3>Run an algorithm</h3>
+            <label class="field-label" for="algorithm-select">Algorithm</label>
+            <select id="algorithm-select">
+              <option value="dijkstra">Dijkstra — weighted shortest path</option>
+              <option value="bfs">BFS — fewest edges</option>
+              <option value="dfs">DFS — depth-first traversal</option>
+              <option value="bellman">Bellman–Ford — negative weights</option>
+              <option value="kruskal">Kruskal — minimum spanning tree</option>
+              <option value="prim">Prim — minimum spanning tree</option>
+              <option value="color">Greedy graph coloring</option>
+              <option value="matching">Bipartite matching demo</option>
+            </select>
+            <div class="two-fields"><div><label class="field-label" for="source-select">Start vertex</label><select id="source-select"></select></div><div><label class="field-label" for="target-select">Destination</label><select id="target-select"></select></div></div>
+            <button id="run-algorithm" class="primary-btn full">Run algorithm <b>▶</b></button>
+            <button id="clear-algorithm" class="secondary-btn full">Clear result</button>
+            <div class="algorithm-hint" id="algorithm-hint">Dijkstra finds a minimum-weight route when all edge weights are non-negative.</div>
+          </div>
+          <div class="panel result-panel">
+            <div class="panel-head"><div><div class="eyebrow">EXECUTION OUTPUT</div><h3 id="result-title">Awaiting algorithm</h3></div><span class="result-state" id="result-state">IDLE</span></div>
+            <div class="result-summary" id="result-summary"><div class="empty-symbol">⌘</div><b>No algorithm has been executed</b><span>Select an algorithm and run it to see the traversal or optimization result.</span></div>
+            <div class="result-details"><div><small>RESULT / PATH</small><strong id="result-path">—</strong></div><div><small>TOTAL COST</small><strong id="result-cost">—</strong></div><div><small>VISITED / SELECTED</small><strong id="result-visited">—</strong></div></div>
+            <div class="eyebrow step-eyebrow">EXECUTION TRACE</div><div id="trace-list" class="trace-list"><span class="muted">Execution steps will appear here.</span></div>
+          </div>
+        </div>
+        <div class="panel complexity-panel"><div class="eyebrow">COMPLEXITY REFERENCE</div><div class="complexity-grid"><div><b>BFS / DFS</b><strong>O(V + E)</strong><small>Adjacency list</small></div><div><b>DIJKSTRA</b><strong>O((V + E) log V)</strong><small>Binary heap</small></div><div><b>BELLMAN–FORD</b><strong>O(VE)</strong><small>Edge relaxation</small></div><div><b>KRUSKAL</b><strong>O(E log E)</strong><small>Edge sorting</small></div><div><b>PRIM</b><strong>O(E log V)</strong><small>Binary heap</small></div><div><b>GREEDY COLORING</b><strong>O(V + E)</strong><small>Fixed vertex order</small></div></div></div>
+      </section>
+
+      <section class="view" id="view-representations">
+        <div class="page-title"><div><div class="eyebrow">DATA STRUCTURES</div><h1>Graph <em>Representations</em></h1><p>Compare four standard ways to store the same network.</p></div><span class="tag">V = 6 / E = 9</span></div>
+        <div class="representation-tabs"><button class="rep-tab active" data-rep="adjacency">Adjacency list</button><button class="rep-tab" data-rep="matrix">Adjacency matrix</button><button class="rep-tab" data-rep="edges">Edge list</button><button class="rep-tab" data-rep="incidence">Incidence matrix</button></div>
+        <div class="panel representation-panel"><div class="panel-head"><div><div class="eyebrow" id="rep-eyebrow">SPARSE NETWORK DEFAULT</div><h3 id="rep-title">Adjacency list</h3></div><span class="tag" id="rep-space">SPACE O(V + E)</span></div><p class="muted" id="rep-description">Each vertex stores its neighboring vertices and edge weights. Neighbor iteration is proportional to the degree of the vertex.</p><div class="table-wrap" id="representation-output"></div><div class="rep-best" id="rep-best">BEST USE <span>Sparse networks, BFS/DFS, and most practical network problems.</span></div></div>
+      </section>
+
+      <section class="view" id="view-theory">
+        <div class="page-title"><div><div class="eyebrow">SIX-PHASE ACADEMIC GUIDE</div><h1>Theory <em>Library</em></h1><p>From Euler's bridge problem to modern graph-based systems.</p></div><span class="tag">KNOWLEDGE BASE</span></div>
+        <div class="theory-layout"><div class="theory-menu" id="theory-menu"></div><article class="panel theory-content" id="theory-content"></article></div>
+      </section>
+
+      <section class="view" id="view-applications">
+        <div class="page-title"><div><div class="eyebrow">GRAPH THEORY IN PRACTICE</div><h1>Real-world <em>Applications</em></h1><p>Different domains, one common mathematical language: vertices and edges.</p></div><span class="tag">USE CASES</span></div>
+        <div class="application-grid" id="application-grid"></div>
+      </section>
+
+      <section class="view" id="view-evaluation">
+        <div class="page-title"><div><div class="eyebrow">PROJECT VALIDATION</div><h1>Evaluation & <em>Future Scope</em></h1><p>Correctness, coverage, performance, usability, and honest limitations.</p></div><span class="tag">PROJECT REPORT</span></div>
+        <div class="evaluation-grid">
+          <article class="panel"><div class="eyebrow">EVALUATION PLAN</div><h3>Five validation dimensions</h3><div class="check-list"><div><b>01</b><span><strong>Correctness</strong><small>Compare algorithm outputs with hand-worked examples and expected answers.</small></span></div><div><b>02</b><span><strong>Coverage</strong><small>Test connected/disconnected graphs, isolated vertices, cycles, and multiple routes.</small></span></div><div><b>03</b><span><strong>Performance</strong><small>Record runtime for increasing V and E; do not claim unmeasured benchmarks.</small></span></div><div><b>04</b><span><strong>Usability</strong><small>Keep the graph readable, label units, and explain what each weight means.</small></span></div><div><b>05</b><span><strong>Limitations</strong><small>State whether data is simulated, estimated, incomplete, or stale.</small></span></div></div></article>
+          <article class="panel"><div class="eyebrow">ADVANCED EXTENSIONS</div><h3>Where graph theory goes next</h3><div class="future-card"><span>◎</span><div><b>Graph Neural Networks</b><p>Learn from graph structure and node/edge features.</p></div></div><div class="future-card"><span>⌁</span><div><b>Predictive traffic systems</b><p>Use network data to forecast congestion and travel time.</p></div></div><div class="future-card"><span>◇</span><div><b>Fraud & anomaly detection</b><p>Identify unusual patterns in transaction and infrastructure networks.</p></div></div><div class="future-card"><span>✧</span><div><b>Recommendation systems</b><p>Use graph relationships to discover relevant connections.</p></div></div></article>
+        </div>
+        <div class="bottom-note"><span>✦</span><p><b>Conclusion</b> — Graph theory provides a common language for modeling relationships. A strong project clearly defines its graph, chooses a valid method, tests it carefully, and explains its real-world value.</p></div>
+        <div class="references panel"><div class="eyebrow">SUGGESTED REFERENCES</div><p>Douglas B. West, <i>Introduction to Graph Theory</i> · Reinhard Diestel, <i>Graph Theory</i> · <a href="https://networkx.org/documentation/stable/" target="_blank" rel="noreferrer">NetworkX documentation</a> · <a href="https://docs.python.org/3/" target="_blank" rel="noreferrer">Python documentation</a> · Appel & Haken, “Every Planar Map is Four Colorable” (1977).</p></div>
+      </section>
+      <footer class="footer"><span>GRAPH THEORY / NETWORK INTELLIGENCE LAB</span><span>ILLUSTRATIVE DATASET · NOT A SURVEYED CAMPUS MAP</span></footer>
+    </main>
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
